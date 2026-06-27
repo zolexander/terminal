@@ -1,26 +1,44 @@
+# =============================================================================
+# Starship Prompt Configuration
+#
+# Projekt : Terminal Environment
+# Version : 0.1.0
+#
+# Beschreibung:
+# Grundkonfiguration des Starship-Prompts.
+# Zusätzliche Module werden schrittweise ergänzt.
+# =============================================================================
+
 add_newline = true
 
 format = """
 $username\
 $hostname\
+
 $directory\
-$git_branch\
-$git_status\
-$cmd_duration
+
 $character
 """
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold yellow)"
 
 [username]
 show_always = true
-style_user = "bold cyan"
+style_user = "bold blue"
+style_root = "bold red"
+format = "[$user]($style)"
 
 [hostname]
 ssh_only = false
-style = "bold blue"
+style = "bold cyan"
+format = "@[$hostname]($style)"
 
 [directory]
 style = "bold yellow"
 truncate_to_repo = false
+truncation_length = 0
 
 [git_branch]
 symbol = " "
@@ -33,6 +51,4 @@ style = "bold red"
 min_time = 100
 style = "bold magenta"
 
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+
