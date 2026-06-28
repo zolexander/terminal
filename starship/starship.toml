@@ -11,18 +11,20 @@
 
 add_newline = true
 
+
 format = """
-$username\
-$hostname\
+[$username$hostname](bold green)$directory$git_branch$git_status$character$fill$battery$time(bg:#1C3A5E fg:#8DFBD2)
+[└─>](bold green) """
 
-$directory\
+#$username\
+#$hostname\
 
-$character
-"""
-[character]
-success_symbol = "[❯](bold cyan)"
-error_symbol = "[❯](bold red)"
-vicmd_symbol = "[❮](bold yellow)"
+#$directory\
+#$git_branch\
+#$git_status
+#$character
+#"""
+
 
 [username]
 show_always = true
@@ -41,14 +43,44 @@ truncate_to_repo = false
 truncation_length = 0
 
 [git_branch]
-symbol = " "
+symbol = "\ue0a0 "
 style = "bold green"
+format = "[$symbol$branch]($style)"
+truncation_length = 32
 
 [git_status]
-style = "bold red"
+style = "bold yellow"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+up_to_date = "✓"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+format = '([\[$all_status$ahead_behind\]]($style))'
 
 [cmd_duration]
 min_time = 100
 style = "bold magenta"
 
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold yellow)"
 
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
+
+
+[battery]
+full_symbol = "󰁹"
+charging_symbol = "󰂄"
+discharging_symbol = "󰁺"
+format = "[$symbol $percentage]($style)"
